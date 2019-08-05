@@ -23,7 +23,7 @@ public class Install implements Command {
     }
 
     @Override
-    public Void call() throws IllegalArgumentException {
+    public String call() throws IllegalArgumentException {
 
         String[] components = executionLine.split(Util.SPACE_DELIMITER);
         validateInstallStatement(components);

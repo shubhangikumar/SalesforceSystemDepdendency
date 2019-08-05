@@ -1,25 +1,30 @@
 package command;
 
 import bean.Component;
+import util.Util;
 
 import java.util.HashMap;
 import java.util.Objects;
 
 public class ListComponent implements Command {
 
-    private final HashMap<Component, Integer> intalledComponents;
+    private final HashMap<Component, Integer> installedComponents;
 
-    public ListComponent(HashMap<Component, Integer> intalledComponents) {
-        Objects.requireNonNull(intalledComponents);
-        this.intalledComponents = intalledComponents;
+    public ListComponent(HashMap<Component, Integer> installedComponents) {
+        Objects.requireNonNull(installedComponents);
+        this.installedComponents = installedComponents;
     }
 
     @Override
-    public Void call() {
+    public String call() {
+        StringBuilder listResult = new StringBuilder();
         System.out.println("LIST");
-        if (intalledComponents.isEmpty())
+        if (installedComponents.isEmpty())
             System.out.println("None of the components have been installed");
-        intalledComponents.keySet().stream().forEach(key -> System.out.println("\t" + key.getComponentName()));
-        return null;
+        installedComponents.keySet().stream().forEach(key -> {
+            System.out.println("\t" + key.getComponentName());
+            listResult.append(key.getComponentName() + Util.SPACE_DELIMITER);
+        });
+        return listResult.toString();
     }
 }

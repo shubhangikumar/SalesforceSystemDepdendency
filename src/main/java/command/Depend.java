@@ -21,7 +21,7 @@ public class Depend implements Command {
     }
 
     @Override
-    public Void call() throws IllegalArgumentException {
+    public String call() throws IllegalArgumentException {
         String[] components = executionLine.split(Util.SPACE_DELIMITER);
         validateDependStatement(components);
         String dependentComponent = components[1];

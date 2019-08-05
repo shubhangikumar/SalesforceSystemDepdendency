@@ -23,7 +23,7 @@ public class Remove implements Command {
     }
 
     @Override
-    public Void call() throws IllegalArgumentException {
+    public String call() throws IllegalArgumentException {
 
         String[] components = executionLine.split(Util.SPACE_DELIMITER);
         validateRemoveStatement(components);
@@ -31,7 +31,7 @@ public class Remove implements Command {
         System.out.println(this.executionLine);
 
         if (!installedComponents.containsKey(component))
-            System.out.println(component.getComponentName() + "is not installed.");
+            System.out.println("\t" +component.getComponentName() + " is not installed.");
         else if (installedComponents.get(component) == 1) {
             System.out.println("\tRemoving " + component.getComponentName());
             installedComponents.remove(component);
