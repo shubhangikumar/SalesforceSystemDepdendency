@@ -1,13 +1,21 @@
 package command.executor;
 
 import bean.Component;
-import command.*;
+import command.ValidCommands;
 import command.excpetion.IllegalCommandException;
+import command.handler.DependCommand;
+import command.handler.InstallCommand;
+import command.handler.ListCommmand;
+import command.handler.RemoveCommand;
 import util.Util;
 
 import java.util.HashMap;
 import java.util.Set;
 import java.util.concurrent.Callable;
+
+/**
+ * Class which directs the command to the appropriate command handler.
+ */
 
 public class CommandExecutor implements Callable<Void> {
 
@@ -25,6 +33,10 @@ public class CommandExecutor implements Callable<Void> {
     }
 
 
+    /**
+     * Checks if command is part of valid command list {@link ValidCommands}
+     */
+
     private void validateCommand(String command) throws IllegalCommandException {
         for (ValidCommands commands : ValidCommands.values()) {
             if (commands.name().equalsIgnoreCase(command)) {
@@ -34,6 +46,9 @@ public class CommandExecutor implements Callable<Void> {
         throw new IllegalCommandException("Command is not valid, please correct the input");
     }
 
+    /**
+     * Route the command to the valid command handlers.
+     */
     @Override
     public Void call() throws IllegalCommandException {
         String command = executionStatement.split(Util.SPACE_DELIMITER)[0];
@@ -45,16 +60,16 @@ public class CommandExecutor implements Callable<Void> {
     private void findCommand(String command) {
         switch (command.toUpperCase()) {
             case "DEPEND":
-                new Depend(this.executionStatement, this.dependencyGraph).call();
+                new DependCommand(this.executionStatement, this.dependencyGraph).call();
                 break;
             case "INSTALL":
-                new Install(this.dependencyGraph, this.installedComponents, this.executionStatement).call();
+                new InstallCommand(this.dependencyGraph, this.installedComponents, this.executionStatement).call();
                 break;
             case "LIST":
-                new ListComponent(this.installedComponents).call();
+                new ListCommmand(this.installedComponents).call();
                 break;
             case "REMOVE":
-                new Remove(this.dependencyGraph, this.installedComponents, this.executionStatement).call();
+                new RemoveCommand(this.dependencyGraph, this.installedComponents, this.executionStatement).call();
                 break;
             case "END":
                 System.out.println("END");
