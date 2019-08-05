@@ -1,11 +1,15 @@
-package command;
+package command.handler;
 
 import bean.Component;
+import command.Command;
 import util.Util;
 
 import java.util.HashMap;
 import java.util.Objects;
 
+/**
+ * Handles List command.
+ */
 public class ListCommmand implements Command {
 
     private final HashMap<Component, Integer> installedComponents;

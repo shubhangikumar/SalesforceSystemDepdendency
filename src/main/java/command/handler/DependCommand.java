@@ -1,13 +1,15 @@
-package command;
+package command.handler;
 
 import bean.Component;
 import com.google.common.collect.Sets;
+import command.Command;
 import util.Util;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
+
+/**
+ * Handles depend command.
+ */
 
 public class DependCommand implements Command {
 
@@ -24,8 +26,9 @@ public class DependCommand implements Command {
     public String call() throws IllegalArgumentException {
         String[] components = executionLine.split(Util.SPACE_DELIMITER);
         validateDependStatement(components);
+        System.out.println(this.executionLine);
         String dependentComponent = components[1];
-        final Set<Component> dependencies = Sets.newHashSet();
+        final Set<Component> dependencies = new LinkedHashSet<>();
 
         Arrays.asList(components).stream().skip(2).forEach(component -> {
             dependencies.add(new Component(component, Boolean.FALSE));

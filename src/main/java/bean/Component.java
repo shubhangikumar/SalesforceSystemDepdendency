@@ -2,6 +2,12 @@ package bean;
 
 import java.util.Objects;
 
+/**
+ *
+ * Bean to hold {@link Component} information.
+ * @Author : Saumitra.shukla
+ */
+
 public class Component {
 
 

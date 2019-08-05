@@ -1,12 +1,16 @@
-package command;
+package command.handler;
 
 import bean.Component;
+import command.Command;
 import util.Util;
 
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Handles install command.
+ */
 public class InstallCommand implements Command {
 
     private final HashMap<Component, Set<Component>> dependencyGraph;

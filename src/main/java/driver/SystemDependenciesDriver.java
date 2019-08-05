@@ -8,6 +8,10 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Set;
 
+
+/**
+ * Driver which routes from MainApp to the command line executor
+ */
 public class SystemDependenciesDriver {
 
     private static final HashMap<Component, Set<Component>> dependencyGraph = new HashMap<>();
@@ -40,11 +44,11 @@ public class SystemDependenciesDriver {
 
     public static void findSystemDependencies(String input) {
         Arrays.stream(input.split("\\r?\\n")).forEach(line -> {
-            takeAction(line);
+            executeCommand(line);
         });
     }
 
-    private static void takeAction(String line) {
+    private static void executeCommand(String line) {
         new CommandExecutor(line, dependencyGraph, installedComponents).call();
 
     }
