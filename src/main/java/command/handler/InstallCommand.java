@@ -7,19 +7,18 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.Set;
 
-public class Install implements Command {
+public class InstallCommand implements Command {
 
     private final HashMap<Component, Set<Component>> dependencyGraph;
     private final HashMap<Component, Integer> installedComponents;
     private final String executionLine;
 
 
-    public Install(final HashMap<Component, Set<Component>> dependencyGraph, HashMap<Component, Integer> installedComponents, String executionLine) {
+    public InstallCommand(final HashMap<Component, Set<Component>> dependencyGraph, HashMap<Component, Integer> installedComponents, String executionLine) {
         Objects.requireNonNull(executionLine);
         this.dependencyGraph = dependencyGraph;
         this.installedComponents = installedComponents;
         this.executionLine = executionLine;
-
     }
 
     @Override
@@ -37,7 +36,6 @@ public class Install implements Command {
     }
 
     private void installComponent(Component component) {
-
 
         if (dependencyGraph.containsKey(component)) {
             Set<Component> dependencyElements = dependencyGraph.get(component);
@@ -58,6 +56,6 @@ public class Install implements Command {
 
     private void validateInstallStatement(String[] components) throws IllegalArgumentException {
         if (components.length != 2)
-            throw new IllegalArgumentException("Install statement is not correct, please provide only one install component");
+            throw new IllegalArgumentException("InstallCommand statement is not correct, please provide only one install component");
     }
 }

@@ -6,11 +6,11 @@ import util.Util;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class ListComponent implements Command {
+public class ListCommmand implements Command {
 
     private final HashMap<Component, Integer> installedComponents;
 
-    public ListComponent(HashMap<Component, Integer> installedComponents) {
+    public ListCommmand(HashMap<Component, Integer> installedComponents) {
         Objects.requireNonNull(installedComponents);
         this.installedComponents = installedComponents;
     }
