@@ -1,6 +1,0 @@
-package command;
-
-
-class DependTest {
-
-}

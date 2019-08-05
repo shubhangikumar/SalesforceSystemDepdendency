@@ -9,12 +9,12 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.Set;
 
-public class Depend implements Command {
+public class DependCommand implements Command {
 
     private final String executionLine;
     private final HashMap<Component, Set<Component>> dependencyGraph;
 
-    public Depend(String executionLine, HashMap<Component, Set<Component>> dependencyGraph) {
+    public DependCommand(String executionLine, HashMap<Component, Set<Component>> dependencyGraph) {
         Objects.requireNonNull(executionLine);
         this.executionLine = executionLine;
         this.dependencyGraph = dependencyGraph;
@@ -38,7 +38,7 @@ public class Depend implements Command {
 
     private void validateDependStatement(String[] components) throws IllegalArgumentException {
         if (components.length <= 2)
-            throw new IllegalArgumentException("Depend statement is not correct, please provide atleast one dependency");
+            throw new IllegalArgumentException("DependCommand statement is not correct, please provide atleast one dependency");
     }
 
 

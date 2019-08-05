@@ -2,6 +2,7 @@ package command;
 
 import bean.Component;
 import com.google.common.collect.Maps;
+import command.handler.ListCommmand;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -12,7 +13,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public class ListComponentTest {
+public class ListCommmandTest {
     private static final Integer DEFAULT_VAUE = 1;
 
     @Test
@@ -23,8 +24,8 @@ public class ListComponentTest {
         installedComponents.put(new Component("FOO", Boolean.TRUE), DEFAULT_VAUE);
         installedComponents.put(new Component("NETCARD", Boolean.TRUE), DEFAULT_VAUE);
         installedComponents.put(new Component("DNS", Boolean.TRUE), DEFAULT_VAUE);
-        ListComponent listComponent = new ListComponent(installedComponents);
-        ListComponent listComponentSpy = Mockito.spy(listComponent);
+        ListCommmand listComponent = new ListCommmand(installedComponents);
+        ListCommmand listComponentSpy = Mockito.spy(listComponent);
         String result = listComponentSpy.call();
         Set<String> componentSet = new HashSet<>(Arrays.asList(result.split(Util.SPACE_DELIMITER)));
         Assert.assertTrue(componentSet.contains("TELNET"));

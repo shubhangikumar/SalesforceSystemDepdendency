@@ -7,14 +7,14 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.Set;
 
-public class Remove implements Command {
+public class RemoveCommand implements Command {
 
     private final HashMap<Component, Set<Component>> dependencyGraph;
     private final HashMap<Component, Integer> installedComponents;
     private final String executionLine;
 
 
-    public Remove(final HashMap<Component, Set<Component>> dependencyGraph, HashMap<Component, Integer> installedComponents, String executionLine) {
+    public RemoveCommand(final HashMap<Component, Set<Component>> dependencyGraph, HashMap<Component, Integer> installedComponents, String executionLine) {
         Objects.requireNonNull(executionLine);
         this.dependencyGraph = dependencyGraph;
         this.installedComponents = installedComponents;
@@ -66,6 +66,6 @@ public class Remove implements Command {
 
     private void validateRemoveStatement(String[] components) throws IllegalArgumentException {
         if (components.length != 2)
-            throw new IllegalArgumentException("Remove statement is not correct, please provide only one remove component");
+            throw new IllegalArgumentException("RemoveCommand statement is not correct, please provide only one remove component");
     }
 }
