@@ -1,0 +1,34 @@
+package command.handler;
+
+import bean.Component;
+import command.Command;
+import util.Util;
+
+import java.util.HashMap;
+import java.util.Objects;
+
+/**
+ * Handles List command.
+ */
+public class ListCommmand implements Command {
+
+    private final HashMap<Component, Integer> installedComponents;
+
+    public ListCommmand(HashMap<Component, Integer> installedComponents) {
+        Objects.requireNonNull(installedComponents);
+        this.installedComponents = installedComponents;
+    }
+
+    @Override
+    public String call() {
+        StringBuilder listResult = new StringBuilder();
+        System.out.println("LIST");
+        if (installedComponents.isEmpty())
+            System.out.println("None of the components have been installed");
+        installedComponents.keySet().stream().forEach(key -> {
+            System.out.println("\t" + key.getComponentName());
+            listResult.append(key.getComponentName() + Util.SPACE_DELIMITER);
+        });
+        return listResult.toString();
+    }
+}
