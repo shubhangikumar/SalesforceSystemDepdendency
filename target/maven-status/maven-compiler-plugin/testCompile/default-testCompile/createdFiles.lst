@@ -1,0 +1,4 @@
+command/handler/RemoveCommandTest.class
+command/handler/ListCommmandTest.class
+command/handler/InstallCommandTest.class
+command/handler/DependCommandTest.class
